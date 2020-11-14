@@ -1,0 +1,58 @@
+git config --global user.name "Egor"
+git config --global user.email "luibkin@yandex.ru"
+git config -l
+git status
+git add ntd.py // добавить в staging (то, что потом будет включено в снимок, то есть commit)
+  git rm --cached <файл> // убрать из staging
+  (use "git restore --staged <file>..." to unstage) видимо когда коммит какой-то уже есть
+  git reset HEAD <file> to unstage // это из видео
+git commit -m "version 1.0" // commit
+ git log // история всех commit
+ git log --oneline // удобный
+ git log -1 -p// история последнего commit и разницу
+ git checkout --file // до включения в staging!!! можно восстановить
+ git diff --staged // если еще не закоммичено, покажет разницу, что будет внесено в commit
+
+ Как удалить commit в Github.txt
+1. Получаем хэш-код коммита, к которому хотим вернуться.
+2. Заходим в папку репозитория и пишем в консоль:
+
+    $ git reset --hard a3775a5485af0af20375cedf46112db5f813322a
+    $ git push --force
+
+
+    Переименование последнего коммита
+git commit --amend -m "Новое название коммита".
+
+   Изменение комментария к не последнему коммиту
+
+Итак, чтобы в git исправить комментарий такого коммита потребуется выполнить rebase в интерактивном режиме.
+
+1. Сначала нужно посмотреть, на сколько коммитов назад находится тот коммит, которые нужно отредактировать. Для этого можно использоваться либо git log --oneline, либо консольный GUI для Git, например, tig.
+
+2. Теперь запускаем rebase в интерактивной режиме:
+
+git rebase -i HEAD~5
+
+3. В появившемся редакторе следует в строках коммитов изменить команду pick на reword.
+Затем сохраняем файл и выходим.
+
+4. Автоматически начнется ребейз и откроется файл редактирования коммита. Здесь необходимо ввести новую подпись к коммиту.
+
+5. Остаётся сохранить и выйти. Теперь название коммита изменено.
+
+
+Добавить проект в репозиторий
+git init
+git add --all
+git commit -a -m 'first commit'
+git remote add origin https://github.com/user/project.git !! поменять https на свой линк на репозиторий
+git pull --rebase origin master
+git push origin master
+
+
+
+git bransh // посмотреть ветки
+git branche onemore // создать ветку
+git checkout onemore // перейти на ветку onemore
+

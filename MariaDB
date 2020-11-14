@@ -1,0 +1,14 @@
+SELECT User, Host FROM mysql.user where Host <> 'localhost';
+
+GRANT ALL PRIVILEGES ON reestr.* TO 'rush_db'@'%' IDENTIFIED BY 'beeline5_db';
+
+LOAD DATA LOCAL INFILE '/home/rush/1111.csv' INTO TABLE ntd FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 LINES (numberN, name,date_utv,date_vvod,old,inf,date_otm);
+
+CREATE TABLE ntd (ntd_id INT NOT NULL AUTO_INCREMENT, numberN text, name text, date_utv text, date_vvod text, old text, inf text, date_otm text, primary key(ntd_id));
+
+DROP TABLE ntd;
+
+truncate table ntd;
+
+CREATE DATABASE IF NOT EXISTS reestr;
+
